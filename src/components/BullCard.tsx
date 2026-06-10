@@ -62,7 +62,7 @@ export function BullCard({
           {/* footer plate */}
           <div className="flex items-center justify-between gap-3 px-1.5 pb-1 pt-3.5">
             <p className="flex items-center gap-2 font-condensed text-[0.74rem] uppercase tracking-[0.1em] text-ink/65">
-              <Longhorn className="h-4 w-7 text-rust" />
+              <Longhorn className="h-5 w-auto text-rust" />
               {meta}
             </p>
             {bull.polled && (

@@ -96,7 +96,7 @@ export function Hero() {
               href="/bulls"
               className="shine-hover group inline-flex items-center justify-center gap-2.5 rounded-md border border-cream/30 bg-rust px-8 py-4 font-condensed text-sm font-semibold uppercase tracking-[0.13em] text-cream shadow-soft transition-colors duration-300 hover:bg-rust-deep"
             >
-              <Longhorn className="h-4 w-8 text-cream/90" />
+              <Longhorn className="h-6 w-auto text-cream/90" />
               Meet our bulls
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>

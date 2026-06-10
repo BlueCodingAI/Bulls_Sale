@@ -210,7 +210,7 @@ export default function HomePage() {
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
               </Link>
             </div>
-            <Longhorn className="mt-12 h-12 w-28 text-cream/30" />
+            <Longhorn className="mt-12 h-16 w-auto text-cream/30" />
           </Reveal>
         </div>
       </section>

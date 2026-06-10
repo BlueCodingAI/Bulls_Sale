@@ -23,21 +23,41 @@ export function ConchoStar(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/* ── Longhorn skull (front-facing, sweeping horns) ─────────────────────── */
+/* ── Longhorn bull head (front-facing, wide sweeping horns) ────────────────
+   A bold, filled Texas-Longhorn silhouette that stays legible even at icon
+   size. The horn + ear are drawn once on the left and mirrored; eyes and
+   nostrils are cut as holes via the even-odd fill rule. */
 export function Longhorn(props: SVGProps<SVGSVGElement>) {
+  const FACE =
+    "M46 58 C50 50 70 50 74 58 C84 62 90 73 88 84 C86 95 78 102 68 105 C64 107 56 107 52 105 C42 102 34 95 32 84 C30 73 36 62 46 58 Z";
+  const HORN = "M47 55 C39 45 31 41 25 30 C27 41 38 51 54 56 Z";
+  const EAR = "M37 72 C30 70 22 74 22 81 C28 83 35 79 40 73 Z";
+  const EARIN = "M28 76 C30 78 33 78 35 77";
+  const NOSTRIL = "M55 93 C53.5 94.5 53.5 96 55 97.5";
+  const mirror = "translate(120 0) scale(-1 1)";
   return (
-    <svg viewBox="0 0 128 72" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden {...props}>
-      {/* horns */}
-      <path d="M64 30C52 22 34 14 8 22c22 1 36 7 48 16" strokeWidth="3" />
-      <path d="M64 30c12-8 30-16 56-8-22 1-36 7-48 16" strokeWidth="3" />
-      {/* skull */}
-      <path
-        d="M64 26c-9 0-15 6-15 14 0 6 3 10 7 14l8 11 8-11c4-4 7-8 7-14 0-8-6-14-15-14z"
-        strokeWidth="2.6"
-      />
-      <path d="M58 40h12M64 40v9" strokeWidth="2.2" />
-      <circle cx="57.5" cy="36" r="1.4" fill="currentColor" stroke="none" />
-      <circle cx="70.5" cy="36" r="1.4" fill="currentColor" stroke="none" />
+    <svg
+      viewBox="16 24 88 89"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d={HORN} />
+      <path d={HORN} transform={mirror} />
+      <path d={EAR} />
+      <path d={EAR} transform={mirror} />
+      <path d={EARIN} />
+      <path d={EARIN} transform={mirror} />
+      <path d={FACE} />
+      <rect x={44} y={86} width={32} height={19} rx={9.5} />
+      <path d={NOSTRIL} />
+      <path d={NOSTRIL} transform={mirror} />
+      <circle cx={51} cy={74} r={4.4} fill="currentColor" stroke="none" />
+      <circle cx={69} cy={74} r={4.4} fill="currentColor" stroke="none" />
     </svg>
   );
 }

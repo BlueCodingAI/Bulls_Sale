@@ -64,7 +64,7 @@ export default function AboutPage() {
                 generation after generation.
               </p>
             </div>
-            <Longhorn className="mt-10 h-12 w-28 text-rust/45" />
+            <Longhorn className="mt-10 h-16 w-auto text-rust/45" />
           </Reveal>
 
           <Reveal direction="left" delay={0.1} className="relative">
