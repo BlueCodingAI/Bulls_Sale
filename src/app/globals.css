@@ -1,0 +1,281 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Rocking C Cattle — "Cowboy Century" design system
+   An authentic 19th-century American frontier palette: weathered parchment,
+   saddle leather, oxblood barn-red, antique brass, and woodtype typography.
+   ========================================================================= */
+@theme {
+  --color-bone: #e7d7b3;       /* aged parchment — main background */
+  --color-bone-2: #dcc89f;     /* darker parchment */
+  --color-cream: #f5ecd3;      /* light parchment — text/panels on dark */
+  --color-ink: #211404;        /* dark saddle-leather brown-black */
+  --color-ink-2: #34220e;      /* leather */
+  --color-ink-3: #4d3318;      /* worn leather */
+  --color-rust: #8c2f12;       /* oxblood / barn red — primary accent */
+  --color-rust-deep: #5e1d09;  /* dried blood */
+  --color-rust-soft: #b1532b;  /* faded brick */
+  --color-gold: #a87b2a;       /* antique brass */
+  --color-gold-soft: #d4ad58;  /* wheat / polished brass */
+  --color-field: #3f3c23;      /* faded olive drab — dark section variant */
+  --color-field-2: #2b2916;
+
+  --font-display: var(--font-rye), "Rockwell", Georgia, serif;
+  --font-sans: var(--font-garamond), Georgia, "Times New Roman", serif;
+  --font-condensed: var(--font-oswald), "Oswald", system-ui, sans-serif;
+
+  --shadow-soft: 0 18px 48px -22px rgba(33, 20, 4, 0.55);
+  --shadow-card: 0 26px 60px -28px rgba(33, 20, 4, 0.7);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------ base -- */
+@layer base {
+  :root { color-scheme: light; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    /* layered parchment: warm stains + fibrous noise */
+    background-image:
+      radial-gradient(ellipse at 12% 0%, rgba(120, 78, 28, 0.10), transparent 55%),
+      radial-gradient(ellipse at 88% 100%, rgba(74, 46, 16, 0.12), transparent 55%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-blend-mode: multiply, multiply, soft-light;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-rust);
+    color: var(--color-cream);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.04;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Worn brass scrollbar */
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: var(--color-bone-2); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-3);
+    border-radius: 999px;
+    border: 3px solid var(--color-bone-2);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-ink-2); }
+}
+
+/* -------------------------------------------------------------- utilities -- */
+@layer utilities {
+  .container-edge {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-edge { padding-inline: 2rem; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-condensed);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .label-condensed {
+    font-family: var(--font-condensed);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  /* Heavy fibrous grain for hero / dark panels */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  .hairline { border-color: color-mix(in srgb, var(--color-ink) 22%, transparent); }
+  .hairline-light { border-color: color-mix(in srgb, var(--color-cream) 22%, transparent); }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .link-underline:hover { background-size: 100% 1px; }
+
+  /* Letterpress depth on headings over light backgrounds */
+  .letterpress {
+    text-shadow: 0 1px 0 rgba(245, 236, 211, 0.4), 0 -1px 0 rgba(33, 20, 4, 0.12);
+  }
+}
+
+/* --------------------------------------------------------- vintage frames -- */
+/* Double-ruled "wanted poster" border */
+.frame-double {
+  box-shadow:
+    0 0 0 1px var(--color-ink),
+    0 0 0 4px var(--color-bone),
+    0 0 0 5px var(--color-ink);
+}
+.frame-double-light {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-cream) 70%, transparent),
+    0 0 0 4px transparent,
+    0 0 0 5px color-mix(in srgb, var(--color-cream) 55%, transparent);
+}
+
+/* Vintage sepia photo treatment that blooms to full color on hover */
+.photo-vintage {
+  filter: sepia(0.34) saturate(0.82) contrast(1.04) brightness(0.97);
+  transition: filter 0.8s var(--ease-out-expo), transform 1.1s var(--ease-out-expo);
+}
+.group:hover .photo-vintage { filter: sepia(0) saturate(1.02) contrast(1) brightness(1); }
+
+/* --------------------------------------------------------------- effects -- */
+.shimmer {
+  background: linear-gradient(100deg, transparent 30%,
+    color-mix(in srgb, var(--color-gold-soft) 60%, transparent) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-slow { animation: float-slow 7s ease-in-out infinite; }
+
+/* Ticker / marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Animated brass gradient text */
+.text-gradient {
+  background-image: linear-gradient(100deg,
+    var(--color-gold) 0%, var(--color-gold-soft) 45%, var(--color-rust-soft) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+.text-gradient-light {
+  background-image: linear-gradient(100deg,
+    var(--color-gold-soft) 0%, #f0dca6 50%, var(--color-gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+@keyframes gradient-pan { to { background-position: 200% center; } }
+
+/* Drifting dust motes (dark panels) */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.45;
+  pointer-events: none;
+  will-change: transform;
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(24px,-28px,0) scale(1.08); }
+  66% { transform: translate3d(-20px,18px,0) scale(0.96); }
+}
+.drift { animation: drift 18s ease-in-out infinite; }
+.drift-slow { animation: drift 26s ease-in-out infinite; }
+
+/* Rubber-stamp entrance for badges / stars */
+.stamp-in { animation: stamp-in 0.6s var(--ease-out-expo) both; }
+@keyframes stamp-in {
+  0% { opacity: 0; transform: scale(1.55) rotate(-9deg); filter: blur(2px); }
+  55% { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+}
+
+/* Swinging saloon / hanging sign */
+.sway { transform-origin: top center; animation: sway 4.8s ease-in-out infinite; }
+@keyframes sway {
+  0%, 100% { transform: rotate(-2.4deg); }
+  50% { transform: rotate(2.4deg); }
+}
+
+/* Twinkle for stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.85) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.12) rotate(8deg); }
+}
+.twinkle { animation: twinkle 3.4s ease-in-out infinite; }
+
+/* Shine sweep on hover */
+.shine-hover { position: relative; overflow: hidden; }
+.shine-hover::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%;
+  width: 60%; height: 100%;
+  transform: skewX(-20deg);
+  background: linear-gradient(90deg, transparent,
+    color-mix(in srgb, #fff 30%, transparent), transparent);
+  transition: left 0.75s var(--ease-out-expo);
+  pointer-events: none;
+}
+.shine-hover:hover::after { left: 150%; }
+
+/* SVG path-draw (ornamental dividers) */
+.draw-path {
+  stroke-dasharray: var(--len, 400);
+  stroke-dashoffset: var(--len, 400);
+  animation: draw 1.6s var(--ease-out-expo) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* 3D tilt context */
+.tilt-perspective { perspective: 1000px; }
+.tilt-inner { transform-style: preserve-3d; transition: transform 0.18s ease-out; }
