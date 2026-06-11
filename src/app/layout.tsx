@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { ScrollTop } from "@/components/ScrollTop";
+import { Analytics } from "@/components/Analytics";
+import { ChromeGate } from "@/components/ChromeGate";
 import { site } from "@/data/site";
 
 // Woodtype display face for headlines (the "WANTED poster" look)
@@ -102,10 +104,15 @@ export default function RootLayout({
           Skip to content
         </a>
         <ScrollProgress />
-        <Navbar />
+        <ChromeGate>
+          <Navbar />
+        </ChromeGate>
         <main id="main">{children}</main>
-        <Footer />
+        <ChromeGate>
+          <Footer />
+        </ChromeGate>
         <ScrollTop />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

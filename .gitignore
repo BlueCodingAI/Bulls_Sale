@@ -34,3 +34,7 @@ next-env.d.ts
 
 # local review screenshots
 /.review/
+
+# admin runtime data + uploads (live on the server's persistent disk, not in git)
+/content/
+/public/uploads/

@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading, ButtonLink, Eyebrow } from "@/components/ui";
 import { BullCard } from "@/components/BullCard";
+import { SiteImage } from "@/components/SiteImage";
 import { Orbs } from "@/components/Orbs";
-import { getFeaturedBulls } from "@/data/bulls";
+import { getFeaturedBulls } from "@/lib/content";
 import { site } from "@/data/site";
 import { ArrowRight } from "@/components/icons";
 
@@ -25,8 +25,8 @@ const pillars = [
   },
 ];
 
-export default function HomePage() {
-  const featured = getFeaturedBulls();
+export default async function HomePage() {
+  const featured = await getFeaturedBulls();
 
   return (
     <>
@@ -76,10 +76,9 @@ export default function HomePage() {
 
           <Reveal direction="left" delay={0.1} className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-card ring-1 ring-ink/10">
-              <Image
-                src="/bulls/lebron/1.jpg"
+              <SiteImage
+                slot="home-feature"
                 alt="A black Lim-Flex herd sire standing broadside in an East Texas pasture"
-                fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />
@@ -141,10 +140,9 @@ export default function HomePage() {
         <div className="container-edge grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal direction="right" className="relative order-2 lg:order-1">
             <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] shadow-card ring-1 ring-cream/10">
-              <Image
-                src="/gallery/herd-1.jpg"
+              <SiteImage
+                slot="home-about"
                 alt="A group of Rocking C Cattle bulls at the feeder in an East Texas pasture"
-                fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />

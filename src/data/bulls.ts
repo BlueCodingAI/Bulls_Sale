@@ -250,6 +250,13 @@ export const bulls: Bull[] = [
 ];
 
 /* ─────────────────────────── helpers (no need to edit) ─────────────────── */
+/*
+ * NOTE: At runtime the catalog is read from the on-disk content store
+ * (see src/lib/content.ts), which seeds itself from the `bulls` array above
+ * the first time and is then managed through the /admin page. The array above
+ * stays as the initial seed + a safe fallback. `sortBulls` below is a pure
+ * helper used by the content layer.
+ */
 
 const statusRank: Record<Bull["status"], number> = {
   available: 0,
@@ -257,9 +264,9 @@ const statusRank: Record<Bull["status"], number> = {
   sold: 2,
 };
 
-/** Gallery order: available → coming-soon → sold, newest sales first. */
-export function getBullsSorted(): Bull[] {
-  return [...bulls].sort((a, b) => {
+/** Gallery order: available → coming-soon → sold, newest sales first. Pure. */
+export function sortBulls(list: Bull[]): Bull[] {
+  return [...list].sort((a, b) => {
     if (statusRank[a.status] !== statusRank[b.status]) {
       return statusRank[a.status] - statusRank[b.status];
     }
@@ -268,17 +275,4 @@ export function getBullsSorted(): Bull[] {
     }
     return (b.bornISO ?? "").localeCompare(a.bornISO ?? "");
   });
-}
-
-export function getBull(slug: string): Bull | undefined {
-  return bulls.find((b) => b.slug === slug);
-}
-
-export function getFeaturedBulls(): Bull[] {
-  const featured = bulls.filter((b) => b.featured && b.status !== "sold");
-  return (featured.length ? featured : getBullsSorted()).slice(0, 3);
-}
-
-export function getAllBullSlugs(): string[] {
-  return bulls.map((b) => b.slug);
 }

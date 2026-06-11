@@ -6,6 +6,7 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { Reveal } from "@/components/Reveal";
 import { MapPin, MailIcon, PhoneIcon, ArrowRight, FacebookIcon, TikTokIcon } from "@/components/icons";
 import { ConchoStar } from "@/components/motifs";
+import { resolveImage } from "@/lib/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -35,7 +36,7 @@ const partners = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
   const contactItems = [
     { Icon: MailIcon, label: "Email", value: site.email, href: `mailto:${site.email}` },
     { Icon: PhoneIcon, label: "Phone", value: site.phone, href: site.phoneHref },
@@ -48,7 +49,7 @@ export default function ContactPage() {
         eyebrow="Get in touch"
         title="Let's talk genetics."
         intro="Nothing is sold through this website — it's here so you can get to know our cattle. When you're ready, reach out and we'll help you find the right bull. No pressure, ever."
-        image="/gallery/herd-4.jpg"
+        image={await resolveImage("contact-header")}
         imageAlt="Rocking C Cattle pasture"
         breadcrumb={[
           { label: "Home", href: "/" },

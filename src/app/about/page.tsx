@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { SiteImage } from "@/components/SiteImage";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading, ButtonLink } from "@/components/ui";
+import { resolveImage } from "@/lib/content";
 import { team, site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -26,14 +27,14 @@ const breedingFor = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
   return (
     <>
       <PageHeader
         eyebrow="Our Family"
         title="Three generations, one passion for good cattle."
         intro="We're a small, family-owned operation that saw a need for good quality Lim-Flex bulls in the East Texas area — and set out to raise them right."
-        image="/gallery/herd-3.jpg"
+        image={await resolveImage("about-header")}
         imageAlt="Rocking C Cattle in an East Texas pasture"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -65,10 +66,9 @@ export default function AboutPage() {
 
           <Reveal direction="left" delay={0.1} className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-card ring-1 ring-ink/10">
-              <Image
-                src="/gallery/herd-4.jpg"
+              <SiteImage
+                slot="about-story"
                 alt="Rocking C Cattle bulls in the pasture"
-                fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />

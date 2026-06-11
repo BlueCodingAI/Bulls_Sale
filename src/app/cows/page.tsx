@@ -5,7 +5,7 @@ import { BullCard } from "@/components/BullCard";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui";
 import { SocialLinks } from "@/components/SocialLinks";
-import { cows } from "@/data/cows";
+import { getCows, resolveImage } from "@/lib/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     "Rocking C Cattle offers registered Lim-Flex and Limousin cows and heifers from time to time as we advance our genetic lines. Reach out or check back for current availability.",
 };
 
-export default function CowsPage() {
-  const available = cows.filter((c) => c.status === "available");
+export default async function CowsPage() {
+  const available = (await getCows()).filter((c) => c.status === "available");
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function CowsPage() {
         eyebrow="The Herd"
         title="Cows & Heifers"
         intro="We will have cows and heifers available from time to time as we advance our genetic lines. Reach out or check back to see if we have anything currently available."
-        image="/gallery/herd-1.jpg"
+        image={await resolveImage("cows-header")}
         imageAlt="Rocking C Cattle cows in an East Texas pasture"
         breadcrumb={[
           { label: "Home", href: "/" },

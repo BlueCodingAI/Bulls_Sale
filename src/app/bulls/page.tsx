@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { BullsGallery } from "@/components/BullsGallery";
-import { getBullsSorted } from "@/data/bulls";
+import { getBullsSorted, resolveImage } from "@/lib/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     "Browse Rocking C Cattle's registered Lim-Flex and Limousin herd sires. Available and recently sold bulls — newest first.",
 };
 
-export default function BullsPage() {
-  const bulls = getBullsSorted();
+export default async function BullsPage() {
+  const bulls = await getBullsSorted();
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function BullsPage() {
         eyebrow="The Gallery"
         title="Our Bulls"
         intro="Available and coming-soon bulls sit at the top; sold bulls stay in the gallery so you can see the kind of cattle we raise. Search by name or filter by status."
-        image="/gallery/herd-2.jpg"
+        image={await resolveImage("bulls-header")}
         imageAlt="Rocking C Cattle bulls grazing in an East Texas pasture"
         breadcrumb={[
           { label: "Home", href: "/" },

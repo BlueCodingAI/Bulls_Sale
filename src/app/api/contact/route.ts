@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { site } from "@/data/site";
+import { recordInquiry } from "@/lib/analytics";
 
 /**
  * Contact form handler.
@@ -51,6 +52,13 @@ export async function POST(req: Request) {
       { ok: false, error: "Please enter a valid email address." },
       { status: 400 },
     );
+  }
+
+  // Log the inquiry for the marketing dashboard (even if email isn't configured).
+  try {
+    await recordInquiry({ name, email, interest });
+  } catch (err) {
+    console.error("Inquiry log failed:", err);
   }
 
   const apiKey = process.env.RESEND_API_KEY;

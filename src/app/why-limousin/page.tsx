@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { SiteImage } from "@/components/SiteImage";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading, Eyebrow } from "@/components/ui";
 import { CheckCircle, ArrowRight } from "@/components/icons";
+import { resolveImage } from "@/lib/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -26,14 +27,14 @@ const limousinPoints = [
   "Eye-catching size and muscling",
 ];
 
-export default function WhyLimFlexPage() {
+export default async function WhyLimFlexPage() {
   return (
     <>
       <PageHeader
         eyebrow="The Breed"
         title="Why Lim-Flex?"
         intro="If you crunch numbers and want the biggest impact on your bottom line, the breed of your herd sire matters. Here's why we built our program around Lim-Flex genetics — with old-world Limousin in the mix for those who want it."
-        image="/gallery/herd-2.jpg"
+        image={await resolveImage("why-header")}
         imageAlt="Lim-Flex herd sires in an East Texas pasture"
         breadcrumb={[
           { label: "Home", href: "/" },
@@ -81,10 +82,9 @@ export default function WhyLimFlexPage() {
 
           <Reveal direction="left" delay={0.1} className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-card ring-1 ring-ink/10">
-              <Image
-                src="/bulls/lebron/1.jpg"
+              <SiteImage
+                slot="why-limflex"
                 alt="A black Lim-Flex herd sire in the pasture"
-                fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />
@@ -99,10 +99,9 @@ export default function WhyLimFlexPage() {
         <div className="container-edge relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal direction="right" className="order-2 lg:order-1 relative">
             <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] shadow-card ring-1 ring-cream/10">
-              <Image
-                src="/bulls/marvin/1.jpg"
+              <SiteImage
+                slot="why-limousin"
                 alt="A red old-world Limousin showing breed size and muscling"
-                fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />

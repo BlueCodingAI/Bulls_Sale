@@ -7,12 +7,13 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui";
 import { CheckCircle, ArrowRight } from "@/components/icons";
-import { bulls, getBull, getBullsSorted } from "@/data/bulls";
+import type { Bull } from "@/lib/types";
+import { getBull, getBullsSorted, getAllBullSlugs } from "@/lib/content";
 import { site } from "@/data/site";
-import { ageFromBorn, formatDate, formatWeight, quickSpecs } from "@/lib/format";
+import { formatDate, formatWeight, quickSpecs } from "@/lib/format";
 
-export function generateStaticParams() {
-  return bulls.map((b) => ({ slug: b.slug }));
+export async function generateStaticParams() {
+  return (await getAllBullSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -21,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const bull = getBull(slug);
+  const bull = await getBull(slug);
   if (!bull) return { title: "Bull not found" };
   const status =
     bull.status === "sold" ? "Sold" : bull.status === "coming-soon" ? "Coming Soon" : "Available";
@@ -36,7 +37,7 @@ export async function generateMetadata({
   };
 }
 
-const weightRows = (bull: ReturnType<typeof getBull>) =>
+const weightRows = (bull: Bull) =>
   [
     { label: "Birth weight", value: formatWeight(bull?.birthWeightLbs) },
     { label: "Weaning weight", value: formatWeight(bull?.weaningWeightLbs) },
@@ -49,13 +50,13 @@ export default async function BullDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const bull = getBull(slug);
+  const bull = await getBull(slug);
   if (!bull) notFound();
 
   const sold = bull.status === "sold";
   const specs = quickSpecs(bull);
   const weights = weightRows(bull);
-  const related = getBullsSorted()
+  const related = (await getBullsSorted())
     .filter((b) => b.slug !== bull.slug)
     .slice(0, 3);
 
