@@ -44,7 +44,7 @@ export const bulls: Bull[] = [
     currentWeightLbs: 1560,
     tagline: "A complete, eye-catching herd sire with the look and the numbers.",
     description:
-      "Lebron is the kind of bull that stops you at the fence line. Long-bodied, deep-ribbed, and heavily muscled through the hip, he carries himself with the easy disposition we breed for. A Lim-Flex out of handpicked AI genetics, he pairs a low birth weight with the growth and cutout that make Limousin-influenced bulls so valuable as terminal sires. He takes cubes from your hand and loads like a gentleman.",
+      "Lebron is the kind of bull that stops you at the fence line. Long-bodied, deep-ribbed, and heavily muscled through the hip, he carries himself with the easy disposition we breed for. A Lim-Flex out of handpicked AI genetics, he pairs a low birth weight with the growth and high yield that make Limousin-influenced bulls so valuable as terminal sires. He takes cubes from your hand and loads like a gentleman.",
     highlights: [
       "Calving-ease birth weight with explosive growth",
       "Thick, sound, and structurally correct",
@@ -90,7 +90,7 @@ export const bulls: Bull[] = [
     highlights: [
       "Old-world red Limousin genetics",
       "Big-framed with tremendous length",
-      "Adds growth and cutout to any cow herd",
+      "Adds growth and high yield to any cow herd",
     ],
     epds: [
       { label: "CE", value: "9" },
@@ -189,10 +189,10 @@ export const bulls: Bull[] = [
     currentWeightLbs: 1590,
     tagline: "Big-topped growth bull sold as a terminal sire.",
     description:
-      "Leroy was our heavy-hitter for growth — a big-topped, expressive-muscled Lim-Flex that weaned off near the top of his class. He sold as a terminal sire to add pounds and cutout. A great example of the kind of performance Lim-Flex brings to the feed yard.",
+      "Leroy was our heavy-hitter for growth — a big-topped, expressive-muscled Lim-Flex that weaned off near the top of his class. He sold as a terminal sire to add pounds and high yield. A great example of the kind of performance Lim-Flex brings to the feed yard.",
     highlights: [
       "Top-end weaning and yearling weights",
-      "Heavy muscle expression and cutout",
+      "Heavy muscle expression and high yield",
       "Efficient, easy-keeping",
     ],
     epds: [

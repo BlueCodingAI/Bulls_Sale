@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowRight } from "@/components/icons";
-import { Star, OrnateDivider } from "@/components/motifs";
+import { OrnateDivider } from "@/components/motifs";
 
 type Variant = "primary" | "ghost" | "outline" | "light";
 
@@ -74,7 +74,6 @@ export function Eyebrow({
         : "text-rust";
   return (
     <span className={`eyebrow inline-flex items-center gap-2.5 ${color} ${className}`}>
-      <Star className="h-3 w-3 twinkle" />
       {children}
       <span className="h-px w-7 bg-current opacity-40" aria-hidden />
     </span>

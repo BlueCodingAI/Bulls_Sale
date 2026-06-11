@@ -69,7 +69,7 @@ export function Navbar() {
             );
           })}
           <ButtonLink href="/contact" variant={light ? "light" : "primary"} className="!px-6 !py-2.5">
-            Inquire
+            Contact
           </ButtonLink>
         </div>
 
@@ -139,7 +139,7 @@ export function Navbar() {
                 className="mt-auto"
               >
                 <ButtonLink href="/contact" withArrow className="w-full">
-                  Inquire about a bull
+                  Contact us
                 </ButtonLink>
               </motion.div>
             </div>

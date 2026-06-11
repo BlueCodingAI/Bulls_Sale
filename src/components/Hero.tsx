@@ -3,13 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
-import { Star, Longhorn } from "@/components/motifs";
 import { Magnetic } from "@/components/Magnetic";
 import { site } from "@/data/site";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const chips = ["Limousin & Lim-Flex", "AI-Bred Genetics", "Calving Ease", "Gentle Disposition"];
+const chips = ["Lim-Flex & Limousin", "Superior Genetics", "Calving Ease", "Gentle Disposition"];
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -55,7 +54,6 @@ export function Hero() {
           transition={{ duration: 0.7, ease }}
           className="flex flex-wrap items-center gap-x-3 gap-y-1 font-condensed text-xs font-medium uppercase tracking-[0.3em] text-gold-soft"
         >
-          <Star className="h-3 w-3 twinkle" />
           <span>{site.location}</span>
           <span className="text-gold/50">&middot;</span>
           <span>Est. {site.established}</span>
@@ -80,9 +78,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease }}
           className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-cream/80"
         >
-          Registered Limousin &amp; Lim-Flex herd sires — raised by a family in East
-          Texas for calving ease, carcass quality, and the kind of calm disposition
-          that makes a great bull a pleasure to own.
+          Registered Lim-Flex herd sires — developed for calving ease, carcass traits
+          and high yield, feed-to-gain efficiency, and a calm disposition.
         </motion.p>
 
         <motion.div
@@ -96,7 +93,6 @@ export function Hero() {
               href="/bulls"
               className="shine-hover group inline-flex items-center justify-center gap-2.5 rounded-md border border-cream/30 bg-rust px-8 py-4 font-condensed text-sm font-semibold uppercase tracking-[0.13em] text-cream shadow-soft transition-colors duration-300 hover:bg-rust-deep"
             >
-              <Longhorn className="h-6 w-auto text-cream/90" />
               Meet our bulls
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -105,7 +101,7 @@ export function Hero() {
             href="/why-limousin"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-cream/35 px-8 py-4 font-condensed text-sm font-semibold uppercase tracking-[0.13em] text-cream backdrop-blur-sm transition-all duration-300 hover:bg-cream hover:text-ink"
           >
-            Why Limousin?
+            Why Lim-Flex?
           </Link>
         </motion.div>
 
@@ -126,7 +122,6 @@ export function Hero() {
               whileHover={{ y: -3 }}
               className="flex items-center gap-2 rounded-sm border border-cream/15 bg-cream/[0.06] px-4 py-2 font-condensed text-[0.78rem] uppercase tracking-[0.1em] text-cream/85 backdrop-blur-md"
             >
-              <Star className="h-2.5 w-2.5 text-gold-soft" />
               {c}
             </motion.li>
           ))}

@@ -5,36 +5,24 @@ import { Marquee } from "@/components/Marquee";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading, ButtonLink, Eyebrow } from "@/components/ui";
 import { BullCard } from "@/components/BullCard";
-import { CountUp } from "@/components/CountUp";
 import { Orbs } from "@/components/Orbs";
 import { getFeaturedBulls } from "@/data/bulls";
 import { site } from "@/data/site";
 import { ArrowRight } from "@/components/icons";
-import { Star, Longhorn, Horseshoe, Wheat, Steer, OrnateDivider } from "@/components/motifs";
 
 const pillars = [
   {
-    Icon: Horseshoe,
     title: "Calving Ease",
     body: "Lim-Flex bulls deliver some of the lowest birth weights in the business — 60–65 lb calves that wean off at 700–800 lb. Low risk at birth, big growth after.",
   },
   {
-    Icon: Steer,
-    title: "Carcass & Cutout",
-    body: "We strive for heavy carcass weight without giving up marbling and quality — the Limousin growth and yield that pays at the rail.",
+    title: "Carcass & Yield",
+    body: "We strive for heavy carcass weight without giving up marbling and quality — the Limousin growth and high yield that pays at the rail.",
   },
   {
-    Icon: Star,
     title: "Exceptional Docility",
     body: "This is where our herd really stands out. Our bulls take cubes from your hand and load like gentlemen. Calm genetics, calm cattle.",
   },
-];
-
-const stats = [
-  { Icon: Horseshoe, display: "60–65", unit: "lb", label: "Birth weights" },
-  { Icon: Wheat, display: "700–800", unit: "lb", label: "Weaning weights" },
-  { Icon: Longhorn, display: "1,400–1,600", unit: "lb", label: "Two-year-old bulls" },
-  { Icon: Star, value: 3, unit: "gen", label: "Generations of ranchers" },
 ];
 
 export default function HomePage() {
@@ -63,7 +51,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink/75">
               He&apos;s 50% responsible for everything that comes out of your pasture.
               It&apos;s far more reasonable to put one high-performing, quality bull on
-              forty average cows than to chase the opposite. That single decision
+              thirty average cows than to chase the opposite. That single decision
               shapes your calf crop for years.
             </p>
             <p className="mt-4 max-w-xl text-pretty text-lg leading-relaxed text-ink/75">
@@ -75,17 +63,12 @@ export default function HomePage() {
               {pillars.map((p) => (
                 <div
                   key={p.title}
-                  className="group flex gap-5 rounded-sm border border-ink/15 bg-cream/70 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-rust/40 hover:bg-cream hover:shadow-soft"
+                  className="group rounded-sm border border-ink/15 border-l-4 border-l-rust/60 bg-cream/70 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-rust/40 hover:border-l-rust hover:bg-cream hover:shadow-soft"
                 >
-                  <span className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-rust/25 bg-rust/10 text-rust transition-transform duration-300 group-hover:scale-110">
-                    <p.Icon className="h-6 w-6" />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg text-ink">{p.title}</h3>
-                    <p className="mt-1.5 text-pretty text-sm leading-relaxed text-ink/65">
-                      {p.body}
-                    </p>
-                  </div>
+                  <h3 className="font-display text-lg text-ink">{p.title}</h3>
+                  <p className="mt-1.5 text-pretty text-sm leading-relaxed text-ink/65">
+                    {p.body}
+                  </p>
                 </div>
               ))}
             </div>
@@ -102,37 +85,24 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
             </div>
-            {/* floating stat card */}
-            <div className="absolute -bottom-6 -left-4 hidden rounded-2xl bg-ink p-6 text-cream shadow-card sm:block">
-              <p className="font-display text-4xl leading-none text-gold-soft">100%</p>
-              <p className="mt-2 max-w-[10rem] text-xs leading-snug text-cream/70">
-                AI-bred with handpicked straws — every match chosen on purpose.
-              </p>
-            </div>
             <div className="absolute -right-3 -top-3 hidden h-20 w-20 rounded-full border border-rust/30 lg:block float-slow" />
           </Reveal>
         </div>
       </section>
 
-      {/* ── Stat band ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-field py-16 text-cream">
+      {/* ── Philosophy band ───────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-field py-20 text-cream sm:py-24">
         <div className="grain pointer-events-none absolute inset-0 opacity-20" />
-        <RevealGroup className="container-edge relative grid grid-cols-2 gap-y-10 gap-x-6 lg:grid-cols-4">
-          {stats.map((s) => (
-            <RevealItem key={s.label} className="group text-center">
-              <div className="mb-3 flex justify-center text-gold-soft transition-transform duration-300 group-hover:-translate-y-1">
-                <s.Icon className="h-8 w-8" />
-              </div>
-              <p className="font-display text-3xl leading-none text-gold-soft sm:text-[2.4rem]">
-                <CountUp value={s.value} display={s.display} />
-                <span className="ml-1 font-condensed text-base font-normal text-cream/60">{s.unit}</span>
-              </p>
-              <p className="mt-3 font-condensed text-xs uppercase tracking-[0.18em] text-cream/65">
-                {s.label}
-              </p>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        <Reveal className="container-edge relative mx-auto max-w-3xl text-center">
+          <p className="text-balance font-display text-[1.7rem] leading-snug text-gold-soft sm:text-[2.2rem]">
+            Good bulls aren&apos;t rushed.
+          </p>
+          <p className="mt-5 text-pretty text-lg leading-relaxed text-cream/80">
+            We document every herd sire from a year old and let him develop until
+            he&apos;s ready at two — AI-bred from handpicked genetics and raised gentle
+            enough to take cubes from your hand.
+          </p>
+        </Reveal>
       </section>
 
       {/* ── Featured bulls ────────────────────────────────────────────── */}
@@ -196,10 +166,8 @@ export default function HomePage() {
             </h2>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-cream/75">
               We&apos;re a small family operation that saw a need for good quality bulls
-              in East Texas. Papa and Gooey, their son Bruce and daughter-in-law
-              Victoria, and our CEO &amp; BRO Kimber all work together to share the
-              knowledge — and the love of the land — that&apos;s been in our family for
-              generations.
+              in East Texas. We all work together in the day-to-day operations and
+              share a love for exceptional beef cattle.
             </p>
             <div className="mt-9">
               <Link
@@ -210,7 +178,6 @@ export default function HomePage() {
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
               </Link>
             </div>
-            <Longhorn className="mt-12 h-16 w-auto text-cream/30" />
           </Reveal>
         </div>
       </section>

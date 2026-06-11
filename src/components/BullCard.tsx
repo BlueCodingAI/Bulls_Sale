@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Bull } from "@/lib/types";
-import { ageFromBorn } from "@/lib/format";
 import { StatusBadge, SoldStamp } from "@/components/StatusBadge";
 import { Tilt } from "@/components/Tilt";
 import { ArrowRight } from "@/components/icons";
-import { Longhorn } from "@/components/motifs";
 
 export function BullCard({
   bull,
@@ -15,8 +13,6 @@ export function BullCard({
   priority?: boolean;
 }) {
   const sold = bull.status === "sold";
-  const age = ageFromBorn(bull.bornISO);
-  const meta = [bull.breed, bull.color, age].filter(Boolean).join(" · ");
 
   return (
     <Link href={`/bulls/${bull.slug}`} className="group relative block">
@@ -57,19 +53,6 @@ export function BullCard({
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </span>
             </div>
-          </div>
-
-          {/* footer plate */}
-          <div className="flex items-center justify-between gap-3 px-1.5 pb-1 pt-3.5">
-            <p className="flex items-center gap-2 font-condensed text-[0.74rem] uppercase tracking-[0.1em] text-ink/65">
-              <Longhorn className="h-5 w-auto text-rust" />
-              {meta}
-            </p>
-            {bull.polled && (
-              <span className="rounded-sm border border-field/30 px-2 py-0.5 font-condensed text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-field">
-                Polled
-              </span>
-            )}
           </div>
         </div>
       </Tilt>

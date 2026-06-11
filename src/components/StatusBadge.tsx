@@ -36,7 +36,7 @@ export function StatusBadge({
 export function SoldStamp({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-10 flex items-center justify-center ${className}`}
+      className={`pointer-events-none absolute inset-0 z-10 flex items-end justify-center pb-[22%] ${className}`}
       aria-hidden
     >
       <span className="-rotate-[13deg] select-none rounded-sm border-4 border-double border-cream/85 px-7 py-2 font-display text-3xl uppercase tracking-[0.12em] text-cream/90 shadow-[0_6px_24px_rgba(0,0,0,0.4)] sm:text-4xl">

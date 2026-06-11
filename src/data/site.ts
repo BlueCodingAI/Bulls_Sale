@@ -11,11 +11,11 @@ export const site = {
   legalName: "Rocking C Cattle, LLC",
   domain: "rockingccattle.com",
   url: "https://rockingccattle.com",
-  tagline: "Registered Limousin & Lim-Flex Herd Sires",
+  tagline: "Registered Lim-Flex & Limousin Herd Sires",
   location: "East Texas",
   established: 2022,
   description:
-    "A family-owned East Texas ranch raising registered Limousin and Lim-Flex herd sires — bred for calving ease, carcass quality, and exceptional docility.",
+    "A family-owned East Texas ranch raising registered Lim-Flex and Limousin herd sires — bred for calving ease, carcass quality, and exceptional docility.",
 
   // ── Contact ───────────────────────────────────────────────────────────
   // Replace these placeholders with your real email and phone.
@@ -43,28 +43,22 @@ export const site = {
 export const team = [
   {
     name: "Bruce & Sherry Caylor",
-    role: "Papa & Gooey — The OG Ranchers",
+    role: "The original ranchers",
     blurb:
-      "Three generations of cattle knowledge run through Papa and Gooey. They set the standard for how we raise, handle, and care for every animal on the place.",
+      "Bruce and Sherry provide wisdom as a generation that have lived and breathed cattle their whole lives. Bruce comes from a long line of cattlemen and cowboys. He was a Ranch Manager for many years and a part-time cowboy his whole life. Bruce spurred the idea to life with a simple comment: “I know Angus sell, but the best money I ever made with cattle was when I ran those Limousin bulls.”",
   },
   {
-    name: "Bruce & Victoria Caylor",
-    role: "Owners & Herd Managers",
+    name: "Bruce & Victoria Caylor, and Kimber",
+    role: "Owners, herd managers & one very good dog",
     blurb:
-      "Bruce and Victoria handle the day-to-day — genetics planning, AI breeding, and getting to know each bull personally so we can match him to the right herd.",
-  },
-  {
-    name: "Kimber Caylor",
-    role: "CEO & BRO (Buggy Riding Officer)",
-    blurb:
-      "Every great operation needs a leader. Kimber supervises pasture checks from the front seat of the buggy and keeps morale sky-high.",
+      "Bruce and Victoria handle the day-to-day — genetics planning, AI breeding, and getting to know each bull personally so we can match him to the right herd. And every good operation needs a leader: Kimber supervises pasture checks from the front seat of the buggy and keeps morale sky-high.",
   },
 ] as const;
 
-/** Primary navigation. */
+/** Primary navigation. Contact lives in its own button in the header. */
 export const nav = [
   { label: "Our Bulls", href: "/bulls" },
-  { label: "Why Limousin", href: "/why-limousin" },
+  { label: "Cows", href: "/cows" },
+  { label: "Why Lim-Flex", href: "/why-limousin" },
   { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ] as const;

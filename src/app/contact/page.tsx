@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Rocking C Cattle about our registered Limousin and Lim-Flex herd sires. Nothing is sold online — we're here to talk genetics and answer questions.",
+    "Get in touch with Rocking C Cattle about our registered Lim-Flex and Limousin herd sires. Nothing is sold online — we're here to talk genetics and answer questions.",
 };
 
 const partners = [

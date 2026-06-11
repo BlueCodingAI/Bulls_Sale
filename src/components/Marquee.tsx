@@ -1,10 +1,8 @@
-import { Star } from "@/components/motifs";
-
 const DEFAULT_ITEMS = [
-  "Registered Limousin",
-  "Lim-Flex Genetics",
+  "Registered Lim-Flex",
+  "Old-World Limousin",
   "Calving Ease",
-  "Carcass & Cutout",
+  "Carcass & High Yield",
   "Exceptional Docility",
   "AI-Bred Herd",
   "NALF Member",
@@ -24,7 +22,7 @@ export function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] }) {
             <span className="px-7 font-condensed text-sm font-medium uppercase tracking-[0.22em] text-cream/85">
               {item}
             </span>
-            <Star className="h-3 w-3 shrink-0 text-gold" />
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70" aria-hidden />
           </span>
         ))}
       </div>

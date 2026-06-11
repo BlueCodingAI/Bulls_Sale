@@ -142,7 +142,7 @@ export default async function BullDetailPage({
                   withArrow
                   className="flex-1"
                 >
-                  Inquire about {bull.name}
+                  Contact us about {bull.name}
                 </ButtonLink>
               )}
               <a

@@ -60,6 +60,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/contact" className="link-underline text-sm text-cream/75 hover:text-cream">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -104,7 +109,7 @@ export function Footer() {
         <p className="flex items-center gap-2">
           <span>{site.location}</span>
           <span aria-hidden>·</span>
-          <span>Registered Limousin &amp; Lim-Flex</span>
+          <span>Registered Lim-Flex &amp; Limousin</span>
         </p>
       </div>
     </footer>

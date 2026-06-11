@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Our Bulls",
   description:
-    "Browse Rocking C Cattle's registered Limousin and Lim-Flex herd sires. Available and recently sold bulls — newest first.",
+    "Browse Rocking C Cattle's registered Lim-Flex and Limousin herd sires. Available and recently sold bulls — newest first.",
 };
 
 export default function BullsPage() {

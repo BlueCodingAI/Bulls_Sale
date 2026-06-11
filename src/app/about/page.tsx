@@ -3,15 +3,12 @@ import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { SectionHeading, ButtonLink } from "@/components/ui";
-import { Longhorn, ConchoStar, Horseshoe } from "@/components/motifs";
 import { team, site } from "@/data/site";
-
-const teamIcons = [ConchoStar, Longhorn, Horseshoe];
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Rocking C Cattle is a three-generation, family-owned ranch in East Texas raising registered Limousin and Lim-Flex bulls — bred for calving ease, carcass quality, and docility.",
+    "Rocking C Cattle is a three-generation, family-owned ranch in East Texas raising registered Lim-Flex and Limousin bulls — bred for calving ease, carcass quality, and docility.",
 };
 
 const breedingFor = [
@@ -20,12 +17,12 @@ const breedingFor = [
     body: "Lim-Flex bulls give some of the lowest birth weights out there. People worry that hurts growth — it doesn't. Limousin genetics mean BIG, so our 60–65 lb calves still wean at 700–800 lb, and our two-year-olds run 1,400–1,600 lb.",
   },
   {
-    title: "Carcass weight & cutout",
-    body: "We strive to maintain a high carcass weight while keeping good marbling and quality — the balance that pays at the rail without sacrificing eating experience.",
+    title: "Carcass weight & yield",
+    body: "We strive to maintain a high carcass yield without sacrificing the quality. These traits keep buyers coming back.",
   },
   {
     title: "Docility",
-    body: "This is where our herd really stands out. Our bulls are handled regularly, take cubes from your hand, and just go with the flow. Calm cattle are safer, healthier, and a pleasure to own.",
+    body: "This is where our herd really stands out. We specifically breed to maximize this trait, enabling us to offer some of the easiest handling bulls in the state.",
   },
 ];
 
@@ -35,7 +32,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="Our Family"
         title="Three generations, one passion for good cattle."
-        intro="We're a small, family-owned operation that saw a need for good quality bulls in the East Texas area — and set out to raise them right."
+        intro="We're a small, family-owned operation that saw a need for good quality Lim-Flex bulls in the East Texas area — and set out to raise them right."
         image="/gallery/herd-3.jpg"
         imageAlt="Rocking C Cattle in an East Texas pasture"
         breadcrumb={[
@@ -64,7 +61,6 @@ export default function AboutPage() {
                 generation after generation.
               </p>
             </div>
-            <Longhorn className="mt-10 h-16 w-auto text-rust/45" />
           </Reveal>
 
           <Reveal direction="left" delay={0.1} className="relative">
@@ -97,27 +93,21 @@ export default function AboutPage() {
             />
           </Reveal>
 
-          <RevealGroup className="mt-16 grid gap-7 md:grid-cols-3" stagger={0.12}>
-            {team.map((member, i) => {
-              const Icon = teamIcons[i % teamIcons.length];
-              return (
-                <RevealItem
-                  key={member.name}
-                  className="group flex flex-col rounded-sm border border-cream/15 bg-cream/[0.04] p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold-soft/40 hover:bg-cream/[0.07]"
-                >
-                  <span className="flex h-16 w-16 items-center justify-center rounded-sm border border-gold-soft/30 bg-gold/10 text-gold-soft transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-9 w-9" />
-                  </span>
-                  <h3 className="mt-6 font-display text-2xl text-cream">{member.name}</h3>
-                  <p className="mt-1.5 font-condensed text-xs uppercase tracking-[0.16em] text-gold-soft">
-                    {member.role}
-                  </p>
-                  <p className="mt-4 text-pretty text-sm leading-relaxed text-cream/70">
-                    {member.blurb}
-                  </p>
-                </RevealItem>
-              );
-            })}
+          <RevealGroup className="mx-auto mt-16 grid max-w-4xl gap-7 md:grid-cols-2" stagger={0.12}>
+            {team.map((member) => (
+              <RevealItem
+                key={member.name}
+                className="group flex flex-col rounded-sm border border-cream/15 border-t-2 border-t-gold-soft/50 bg-cream/[0.04] p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold-soft/40 hover:bg-cream/[0.07]"
+              >
+                <h3 className="font-display text-2xl text-cream">{member.name}</h3>
+                <p className="mt-1.5 font-condensed text-xs uppercase tracking-[0.16em] text-gold-soft">
+                  {member.role}
+                </p>
+                <p className="mt-4 text-pretty text-sm leading-relaxed text-cream/70">
+                  {member.blurb}
+                </p>
+              </RevealItem>
+            ))}
           </RevealGroup>
         </div>
       </section>
