@@ -13,7 +13,7 @@ import { ArrowRight } from "@/components/icons";
 const pillars = [
   {
     title: "Calving Ease",
-    body: "Lim-Flex bulls deliver some of the lowest birth weights in the business — 60–65 lb calves that wean off at 700–800 lb. Low risk at birth, big growth after.",
+    body: "Lim-Flex bulls deliver some of the lowest birth weights in the business. Low risk at birth, big growth after.",
   },
   {
     title: "Carcass & Yield",
@@ -21,7 +21,7 @@ const pillars = [
   },
   {
     title: "Exceptional Docility",
-    body: "This is where our herd really stands out. Our bulls take cubes from your hand and load like gentlemen. Calm genetics, calm cattle.",
+    body: "This is where our herd really stands out. We specifically breed to maximize this trait, enabling us to offer some of the easiest handling bulls in the state.",
   },
 ];
 
@@ -55,8 +55,7 @@ export default async function HomePage() {
               shapes your calf crop for years.
             </p>
             <p className="mt-4 max-w-xl text-pretty text-lg leading-relaxed text-ink/75">
-              The best investment you can make for your herd is a good bull — and
-              that&apos;s the only thing we raise.
+              The best investment you can make for your herd is a good bull.
             </p>
 
             <div className="mt-10 space-y-4">
@@ -97,9 +96,9 @@ export default async function HomePage() {
             Good bulls aren&apos;t rushed.
           </p>
           <p className="mt-5 text-pretty text-lg leading-relaxed text-cream/80">
-            We document every herd sire from a year old and let him develop until
-            he&apos;s ready at two — AI-bred from handpicked genetics and raised gentle
-            enough to take cubes from your hand.
+            We sell our virgin bulls at 22–24 months old to make sure they are
+            mature enough to get straight to work. All our bulls are fully
+            vaccinated, vet checked, and fertility tested.
           </p>
         </Reveal>
       </section>

@@ -7,12 +7,15 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui";
 import { ArrowRight } from "@/components/icons";
-import { getBull, getBullsSorted, getAllBullSlugs } from "@/lib/content";
+import { getCow, getCowsSorted, getAllCowSlugs } from "@/lib/content";
 import { site } from "@/data/site";
 import { formatDate, quickSpecs } from "@/lib/format";
 
+// Cows are added through /admin, so render any slug on demand.
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
-  return (await getAllBullSlugs()).map((slug) => ({ slug }));
+  return (await getAllCowSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -21,42 +24,42 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const bull = await getBull(slug);
-  if (!bull) return { title: "Bull not found" };
+  const cow = await getCow(slug);
+  if (!cow) return { title: "Not found" };
   const status =
-    bull.status === "sold" ? "Sold" : bull.status === "coming-soon" ? "Coming Soon" : "Available";
+    cow.status === "sold" ? "Sold" : cow.status === "coming-soon" ? "Coming Soon" : "Available";
   return {
-    title: `${bull.name} — ${bull.breed} ${status}`,
-    description: `${bull.name}: ${bull.tagline} ${bull.breed}, ${bull.color}. ${bull.description.slice(0, 120)}`,
+    title: `${cow.name} — ${cow.breed} ${status}`,
+    description: `${cow.name}: ${cow.tagline} ${cow.breed}, ${cow.color}. ${cow.description.slice(0, 120)}`,
     openGraph: {
-      title: `${bull.name} · ${site.name}`,
-      description: bull.tagline,
-      images: [{ url: bull.photos[0].src }],
+      title: `${cow.name} · ${site.name}`,
+      description: cow.tagline,
+      images: [{ url: cow.photos[0].src }],
     },
   };
 }
 
-export default async function BullDetailPage({
+export default async function CowDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const bull = await getBull(slug);
-  if (!bull) notFound();
+  const cow = await getCow(slug);
+  if (!cow) notFound();
 
-  const sold = bull.status === "sold";
-  const specs = quickSpecs(bull);
-  const related = (await getBullsSorted())
-    .filter((b) => b.slug !== bull.slug)
+  const sold = cow.status === "sold";
+  const specs = quickSpecs(cow);
+  const related = (await getCowsSorted())
+    .filter((c) => c.slug !== cow.slug)
     .slice(0, 3);
 
   const pedigree = [
-    { label: "Registered name", value: bull.registeredName },
-    { label: "Reg. number", value: bull.registrationNumber },
-    { label: "Sire", value: bull.sire },
-    { label: "Dam", value: bull.dam },
-    { label: "Born", value: formatDate(bull.bornISO) },
+    { label: "Registered name", value: cow.registeredName },
+    { label: "Reg. number", value: cow.registrationNumber },
+    { label: "Sire", value: cow.sire },
+    { label: "Dam", value: cow.dam },
+    { label: "Born", value: formatDate(cow.bornISO) },
   ].filter((r) => r.value);
 
   return (
@@ -72,9 +75,9 @@ export default async function BullDetailPage({
         >
           <Link href="/" className="hover:text-cream">Home</Link>
           <span aria-hidden>/</span>
-          <Link href="/bulls" className="hover:text-cream">Our Bulls</Link>
+          <Link href="/cows" className="hover:text-cream">Cows</Link>
           <span aria-hidden>/</span>
-          <span className="text-cream/85">{bull.name}</span>
+          <span className="text-cream/85">{cow.name}</span>
         </nav>
       </div>
 
@@ -82,26 +85,26 @@ export default async function BullDetailPage({
       <section className="container-edge grid gap-12 py-14 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-20">
         <Reveal direction="right">
           <BullMedia
-            name={bull.name}
-            photos={bull.photos}
-            videos={bull.videos}
+            name={cow.name}
+            photos={cow.photos}
+            videos={cow.videos}
             sold={sold}
           />
         </Reveal>
 
         <Reveal direction="left" delay={0.05}>
           <div className="lg:sticky lg:top-28">
-            <StatusBadge status={bull.status} />
+            <StatusBadge status={cow.status} />
             <h1 className="mt-4 font-display text-5xl font-semibold leading-none text-ink sm:text-6xl">
-              {bull.name}
+              {cow.name}
             </h1>
-            {bull.registeredName && (
+            {cow.registeredName && (
               <p className="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-rust">
-                {bull.registeredName}
+                {cow.registeredName}
               </p>
             )}
             <p className="mt-5 text-pretty text-lg leading-relaxed text-ink/75">
-              {bull.tagline}
+              {cow.tagline}
             </p>
 
             {/* quick specs */}
@@ -124,24 +127,24 @@ export default async function BullDetailPage({
             {/* CTA — a single button through to the contact page (phone numbers live there). */}
             <div className="mt-8">
               {sold ? (
-                <ButtonLink href="/bulls" variant="ghost" withArrow className="w-full sm:w-auto">
-                  See available bulls
+                <ButtonLink href="/cows" variant="ghost" withArrow className="w-full sm:w-auto">
+                  See available cows
                 </ButtonLink>
               ) : (
                 <ButtonLink
-                  href={`/contact?bull=${encodeURIComponent(bull.name)}`}
+                  href={`/contact?bull=${encodeURIComponent(cow.name)}`}
                   variant="primary"
                   withArrow
                   className="w-full sm:w-auto"
                 >
-                  Contact us about {bull.name}
+                  Contact us about {cow.name}
                 </ButtonLink>
               )}
             </div>
 
             {sold && (
               <p className="mt-4 text-sm text-ink/55">
-                {bull.name} has been sold{formatDate(bull.soldDateISO) ? ` (${formatDate(bull.soldDateISO)})` : ""}, but he stays here so you can see the kind of cattle we raise.
+                {cow.name} has been sold{formatDate(cow.soldDateISO) ? ` (${formatDate(cow.soldDateISO)})` : ""}, but she stays here so you can see the kind of cattle we raise.
               </p>
             )}
           </div>
@@ -149,15 +152,15 @@ export default async function BullDetailPage({
       </section>
 
       {/* EPDs + Pedigree/registration */}
-      {(bull.epds?.length || pedigree.length > 0) && (
+      {(cow.epds?.length || pedigree.length > 0) && (
         <section className="bg-bone py-16 sm:py-20">
           <div className="container-edge grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {bull.epds && bull.epds.length > 0 && (
+            {cow.epds && cow.epds.length > 0 && (
               <Reveal>
                 <h2 className="font-display text-3xl text-ink">EPDs</h2>
                 <p className="mt-2 text-sm text-ink/55">Expected Progeny Differences.</p>
                 <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  {bull.epds.map((e) => (
+                  {cow.epds.map((e) => (
                     <div
                       key={e.label}
                       className="rounded-xl border border-ink/10 bg-cream px-4 py-5 text-center"
@@ -206,7 +209,7 @@ export default async function BullDetailPage({
             <div className="flex items-end justify-between gap-6">
               <h2 className="font-display text-3xl text-ink sm:text-4xl">More from the herd</h2>
               <Link
-                href="/bulls"
+                href="/cows"
                 className="hidden items-center gap-2 text-sm font-semibold text-rust hover:text-rust-deep sm:inline-flex"
               >
                 View all
@@ -214,8 +217,8 @@ export default async function BullDetailPage({
               </Link>
             </div>
             <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((b) => (
-                <BullCard key={b.slug} bull={b} />
+              {related.map((c) => (
+                <BullCard key={c.slug} bull={c} basePath="/cows" />
               ))}
             </div>
           </div>

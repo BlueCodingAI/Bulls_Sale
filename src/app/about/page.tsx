@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const breedingFor = [
   {
     title: "Birth weight & calving ease",
-    body: "Lim-Flex bulls give some of the lowest birth weights out there. People worry that hurts growth — it doesn't. Limousin genetics mean BIG, so our 60–65 lb calves still wean at 700–800 lb, and our two-year-olds run 1,400–1,600 lb.",
+    body: "Lim-Flex bulls give some of the lowest birth weights out there. People worry that hurts growth — it doesn't. Limousin genetics mean BIG. Once our light calves hit the ground, they grow at an explosive rate.",
   },
   {
     title: "Carcass weight & yield",
@@ -52,7 +52,8 @@ export default async function AboutPage() {
                 We started this journey in {site.established}, but cattle have been in
                 our family for generations. The team is three generations working
                 side by side — sharing knowledge, swapping stories, and chasing the
-                same goal: the best bulls we can possibly raise for our customers.
+                same goal: the best Lim-Flex and Limousin bulls we can possibly raise
+                for our customers.
               </p>
               <p>
                 We run both Lim-Flex and old-world red Limousin, so no matter what
@@ -88,7 +89,7 @@ export default async function AboutPage() {
               divider
               eyebrow="Meet the team"
               title="The people behind the brand"
-              intro="Three generations — and one very important dog — make Rocking C Cattle what it is."
+              intro="Three generations make Rocking C Cattle what it is."
               className="mx-auto"
             />
           </Reveal>
@@ -100,9 +101,6 @@ export default async function AboutPage() {
                 className="group flex flex-col rounded-sm border border-cream/15 border-t-2 border-t-gold-soft/50 bg-cream/[0.04] p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold-soft/40 hover:bg-cream/[0.07]"
               >
                 <h3 className="font-display text-2xl text-cream">{member.name}</h3>
-                <p className="mt-1.5 font-condensed text-xs uppercase tracking-[0.16em] text-gold-soft">
-                  {member.role}
-                </p>
                 <p className="mt-4 text-pretty text-sm leading-relaxed text-cream/70">
                   {member.blurb}
                 </p>

@@ -8,14 +8,17 @@ import { ArrowRight } from "@/components/icons";
 export function BullCard({
   bull,
   priority = false,
+  basePath = "/bulls",
 }: {
   bull: Bull;
   priority?: boolean;
+  /** Link target prefix — "/bulls" (default) or "/cows". */
+  basePath?: string;
 }) {
   const sold = bull.status === "sold";
 
   return (
-    <Link href={`/bulls/${bull.slug}`} className="group relative block">
+    <Link href={`${basePath}/${bull.slug}`} className="group relative block">
       <Tilt max={6}>
         {/* Wanted-poster parchment card */}
         <div className="relative flex h-full flex-col rounded-sm bg-cream p-3 shadow-card ring-1 ring-ink/15 transition-all duration-500 group-hover:-translate-y-1 group-hover:ring-rust/40">

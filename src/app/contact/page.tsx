@@ -39,7 +39,12 @@ const partners = [
 export default async function ContactPage() {
   const contactItems = [
     { Icon: MailIcon, label: "Email", value: site.email, href: `mailto:${site.email}` },
-    { Icon: PhoneIcon, label: "Phone", value: site.phone, href: site.phoneHref },
+    ...site.phones.map((p) => ({
+      Icon: PhoneIcon,
+      label: `Phone · ${p.name}`,
+      value: p.number,
+      href: p.href,
+    })),
     { Icon: MapPin, label: "Location", value: site.location, href: undefined },
   ];
 

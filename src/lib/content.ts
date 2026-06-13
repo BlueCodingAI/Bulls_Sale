@@ -53,6 +53,18 @@ export function saveCows(list: Bull[]): Promise<void> {
   return writeJSON(COWS_FILE, list);
 }
 
+export async function getCowsSorted(): Promise<Bull[]> {
+  return sortBulls(await getCows());
+}
+
+export async function getCow(slug: string): Promise<Bull | undefined> {
+  return (await getCows()).find((c) => c.slug === slug);
+}
+
+export async function getAllCowSlugs(): Promise<string[]> {
+  return (await getCows()).map((c) => c.slug);
+}
+
 /* ── Site image overrides ───────────────────────────────────────────────── */
 
 export function getImageOverrides(): Promise<Record<string, string>> {

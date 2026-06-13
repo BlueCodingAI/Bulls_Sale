@@ -33,7 +33,7 @@ export default async function WhyLimFlexPage() {
       <PageHeader
         eyebrow="The Breed"
         title="Why Lim-Flex?"
-        intro="If you crunch numbers and want the biggest impact on your bottom line, the breed of your herd sire matters. Here's why we built our program around Lim-Flex genetics — with old-world Limousin in the mix for those who want it."
+        intro="If you crunch numbers and want the biggest impact on your bottom line, the breed of your herd sire matters. Here's why we built our program around Lim-Flex genetics."
         image={await resolveImage("why-header")}
         imageAlt="Lim-Flex herd sires in an East Texas pasture"
         breadcrumb={[

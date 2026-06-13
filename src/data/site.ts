@@ -12,16 +12,22 @@ export const site = {
   domain: "rockingccattle.com",
   url: "https://rockingccattle.com",
   tagline: "Registered Lim-Flex & Limousin Herd Sires",
-  location: "East Texas",
+  location: "Gary, TX",
   established: 2022,
   description:
     "A family-owned East Texas ranch raising registered Lim-Flex and Limousin herd sires — bred for calving ease, carcass quality, and exceptional docility.",
 
   // ── Contact ───────────────────────────────────────────────────────────
-  // Replace these placeholders with your real email and phone.
   email: "info@rockingccattle.com",
-  phone: "(903) 555-0147",
-  phoneHref: "tel:+19035550147",
+  // Two contact numbers — Bruce and Victoria. Shown together in the footer
+  // and on the contact page.
+  phones: [
+    { name: "Bruce", number: "(903) 263-7155", href: "tel:+19032637155" },
+    { name: "Victoria", number: "(903) 631-9363", href: "tel:+19036319363" },
+  ],
+  // Primary number — used where a single number is needed (e.g. SEO schema).
+  phone: "(903) 263-7155",
+  phoneHref: "tel:+19032637155",
 
   // ── Social & partners ─────────────────────────────────────────────────
   social: {
@@ -42,16 +48,14 @@ export const site = {
 /** People behind the ranch — used on the About page. */
 export const team = [
   {
-    name: "Bruce & Sherry Caylor",
-    role: "The original ranchers",
+    name: "Bruce & Victoria Caylor, and Kimber",
     blurb:
-      "Bruce and Sherry provide wisdom as a generation that have lived and breathed cattle their whole lives. Bruce comes from a long line of cattlemen and cowboys. He was a Ranch Manager for many years and a part-time cowboy his whole life. Bruce spurred the idea to life with a simple comment: “I know Angus sell, but the best money I ever made with cattle was when I ran those Limousin bulls.”",
+      "Bruce and Victoria have spent countless hours studying genetics and how they impact performance and EPDs. They crunch the numbers and hand select every sire for each dam to maximize the genetic traits of the calf.",
   },
   {
-    name: "Bruce & Victoria Caylor, and Kimber",
-    role: "Owners, herd managers & one very good dog",
+    name: "Bruce & Sherry Caylor",
     blurb:
-      "Bruce and Victoria handle the day-to-day — genetics planning, AI breeding, and getting to know each bull personally so we can match him to the right herd. And every good operation needs a leader: Kimber supervises pasture checks from the front seat of the buggy and keeps morale sky-high.",
+      "Bruce spurred the idea to life with a simple comment: “I know Angus sell, but the best money I ever made with cattle was when I ran those Limousin bulls.”",
   },
 ] as const;
 

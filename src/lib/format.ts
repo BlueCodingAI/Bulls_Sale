@@ -6,20 +6,24 @@ export const statusLabel: Record<BullStatus, string> = {
   sold: "Sold",
 };
 
-/** Whole-number age like "2 yrs" / "11 mos" from an ISO birth date. */
-export function ageFromBorn(bornISO?: string): string | null {
+/**
+ * Age in whole months from an ISO birth date, e.g. "23 mos" / "1 mo".
+ * We talk about bulls in months, not years. Pass `asOfISO` to freeze the count
+ * at a point in time — used for sold bulls so their age stops climbing (a bull
+ * sold at 24 months keeps reading "24 mos", not "138 mos" years later).
+ */
+export function ageInMonths(bornISO?: string, asOfISO?: string): string | null {
   if (!bornISO) return null;
   const born = new Date(bornISO);
   if (Number.isNaN(born.getTime())) return null;
-  const now = new Date();
+  const asOf = asOfISO ? new Date(asOfISO) : new Date();
+  if (Number.isNaN(asOf.getTime())) return null;
   let months =
-    (now.getFullYear() - born.getFullYear()) * 12 +
-    (now.getMonth() - born.getMonth());
-  if (now.getDate() < born.getDate()) months -= 1;
+    (asOf.getFullYear() - born.getFullYear()) * 12 +
+    (asOf.getMonth() - born.getMonth());
+  if (asOf.getDate() < born.getDate()) months -= 1;
   if (months < 0) months = 0;
-  if (months < 24) return `${months} mo${months === 1 ? "" : "s"}`;
-  const years = Math.floor(months / 12);
-  return `${years} yr${years === 1 ? "" : "s"}`;
+  return `${months} mo${months === 1 ? "" : "s"}`;
 }
 
 export function formatDate(iso?: string): string | null {
@@ -41,9 +45,12 @@ export function formatWeight(lbs?: number): string | null {
 export function quickSpecs(bull: Bull): { label: string; value: string }[] {
   const rows: { label: string; value: string }[] = [];
   rows.push({ label: "Breed", value: bull.breed });
-  rows.push({ label: "Color", value: bull.color });
-  const age = ageFromBorn(bull.bornISO);
+  if (bull.registrationNumber) {
+    rows.push({ label: "Reg. #", value: bull.registrationNumber });
+  }
+  // A sold bull's age freezes at his sold date so it stops counting up.
+  const asOf = bull.status === "sold" ? bull.soldDateISO : undefined;
+  const age = ageInMonths(bull.bornISO, asOf);
   if (age) rows.push({ label: "Age", value: age });
-  if (bull.polled) rows.push({ label: "Polled", value: "Yes" });
   return rows;
 }

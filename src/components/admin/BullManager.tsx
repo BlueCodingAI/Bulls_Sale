@@ -170,6 +170,13 @@ export function BullManager({
     await persist(next, `Marked ${items[i].name} as sold.`);
   }
 
+  async function quickAvailable(i: number) {
+    const next = items.map((b, idx) =>
+      idx === i ? { ...b, status: "available" as BullStatus, soldDateISO: undefined } : b,
+    );
+    await persist(next, `${items[i].name} is now available.`);
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -215,6 +222,11 @@ export function BullManager({
                   <button onClick={() => openEdit(i)} className="rounded-md border border-ink/20 px-2.5 py-1 text-xs font-medium text-ink hover:bg-ink/5">
                     Edit
                   </button>
+                  {b.status !== "available" && (
+                    <button onClick={() => quickAvailable(i)} disabled={busy} className="rounded-md border border-field/50 px-2.5 py-1 text-xs font-medium text-field hover:bg-field/5 disabled:opacity-50">
+                      Make available
+                    </button>
+                  )}
                   {b.status !== "sold" && (
                     <button onClick={() => quickSold(i)} disabled={busy} className="rounded-md border border-rust/40 px-2.5 py-1 text-xs font-medium text-rust hover:bg-rust/5 disabled:opacity-50">
                       Mark sold

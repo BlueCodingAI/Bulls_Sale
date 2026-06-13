@@ -81,12 +81,14 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            <li className="flex items-start gap-3">
-              <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-soft" />
-              <a href={site.phoneHref} className="link-underline hover:text-cream">
-                {site.phone}
-              </a>
-            </li>
+            {site.phones.map((p) => (
+              <li key={p.href} className="flex items-start gap-3">
+                <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-soft" />
+                <a href={p.href} className="link-underline hover:text-cream">
+                  {p.name} · {p.number}
+                </a>
+              </li>
+            ))}
           </ul>
           <a
             href={site.nalf.url}

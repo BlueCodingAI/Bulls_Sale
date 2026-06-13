@@ -61,7 +61,7 @@ export function Logo({
         <span
           className={`eyebrow mt-1 text-[0.55rem] tracking-[0.34em] ${subColor}`}
         >
-          Cattle Co.
+          Cattle
         </span>
       </span>
     </span>

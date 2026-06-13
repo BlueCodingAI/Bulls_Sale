@@ -37,7 +37,7 @@ export default async function CowsPage() {
             <RevealGroup className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
               {available.map((cow, i) => (
                 <RevealItem key={cow.slug}>
-                  <BullCard bull={cow} priority={i < 3} />
+                  <BullCard bull={cow} priority={i < 3} basePath="/cows" />
                 </RevealItem>
               ))}
             </RevealGroup>
