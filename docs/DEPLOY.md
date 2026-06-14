@@ -236,7 +236,7 @@ tar czf rocking-c-backup-$(date +%F).tgz -C /var/data rocking-c
 | Symptom | Cause / fix |
 |---|---|
 | `413 Request Entity Too Large` on upload | `client_max_body_size` missing/too small in nginx (step 8). |
-| Uploaded photo shows broken / `_next/image` 400 "isn't a valid image" | nginx isn't serving `/uploads/` from disk, or the `alias` path is wrong (step 8). Verify with `curl -sI https://…/uploads/<file>`. |
+| Uploaded photo shows broken / `_next/image` 400 "isn't a valid image" | Two requirements: (a) nginx must serve `/uploads/` from disk (step 8) — verify with `curl -sI https://…/uploads/<file>` → `200 image/...`; and (b) `images.unoptimized` must be `true` in `next.config.ts`. Next's image optimizer fetches sources *through Next itself*, which doesn't serve files uploaded after build, so without `unoptimized` the optimizer 404s on uploads even when nginx serves them. |
 | `/admin` login page says it's disabled | `ADMIN_PASSWORD` not set in `.env`, or PM2 not restarted after editing `.env`. |
 | Edits/photos vanished after redeploy | `CONTENT_DIR` not set, or `public/uploads` symlink missing (steps 4–5). |
 | Site down after reboot | `pm2 startup` step not completed. Re-run it and `pm2 save`. |
