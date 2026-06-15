@@ -83,6 +83,7 @@ export function Eyebrow({
 export function SectionHeading({
   eyebrow,
   title,
+  subtitle,
   intro,
   align = "left",
   light = false,
@@ -92,6 +93,8 @@ export function SectionHeading({
 }: {
   eyebrow?: string;
   title: ReactNode;
+  /** Optional kicker line rendered between the title and the divider. */
+  subtitle?: ReactNode;
   intro?: ReactNode;
   align?: "left" | "center";
   light?: boolean;
@@ -115,10 +118,19 @@ export function SectionHeading({
       >
         {title}
       </h2>
+      {subtitle && (
+        <p
+          className={`mt-3 w-64 whitespace-nowrap text-center font-condensed text-sm font-semibold uppercase tracking-[0.2em] ${
+            light ? "text-gold-soft" : "text-rust"
+          } ${centered ? "" : "self-start"}`}
+        >
+          {subtitle}
+        </p>
+      )}
       {divider && (
         <OrnateDivider
           light={light}
-          className={`mt-6 h-5 w-64 ${centered ? "" : "self-start"}`}
+          className={`${subtitle ? "mt-3" : "mt-6"} h-5 w-64 ${centered ? "" : "self-start"}`}
         />
       )}
       {intro && (

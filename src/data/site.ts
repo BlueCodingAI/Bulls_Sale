@@ -55,7 +55,7 @@ export const team = [
   {
     name: "Bruce & Sherry Caylor",
     blurb:
-      "Bruce spurred the idea to life with a simple comment: “I know Angus sell, but the best money I ever made with cattle was when I ran those Limousin bulls.”",
+      "Bruce and Sherry provide wisdom as a generation that have lived and breathed cattle their whole lives. Bruce spurred the idea to life with a simple comment: “I know Angus sell, but the best money I ever made with cattle was when I ran those Limousin bulls.”",
   },
 ] as const;
 

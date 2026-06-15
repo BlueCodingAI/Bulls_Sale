@@ -46,7 +46,12 @@ export default async function AboutPage() {
       <section className="bg-bone py-24 sm:py-32">
         <div className="container-edge grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal direction="right">
-            <SectionHeading eyebrow={`Est. ${site.established}`} divider title="A long family lineage in the cattle business." />
+            <SectionHeading
+              eyebrow={`Est. ${site.established}`}
+              divider
+              title="A long family lineage in the cattle business."
+              subtitle="Lim-Flex & Limousin"
+            />
             <div className="mt-6 space-y-5 text-pretty text-lg leading-relaxed text-ink/75">
               <p>
                 We started this journey in {site.established}, but cattle have been in

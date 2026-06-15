@@ -7,7 +7,7 @@ export default function NotFound() {
     <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-ink text-cream">
       <div className="grain pointer-events-none absolute inset-0 opacity-20" />
       <div className="container-edge relative flex flex-col items-center text-center">
-        <BrandMark className="h-16 w-16 text-gold-soft" />
+        <BrandMark tone="light" className="h-16 w-16 text-gold-soft" />
         <p className="eyebrow mt-8 text-gold-soft">Lost in the pasture</p>
         <h1 className="mt-4 font-display text-6xl font-semibold text-cream sm:text-7xl">
           404

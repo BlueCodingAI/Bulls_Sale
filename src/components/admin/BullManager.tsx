@@ -327,23 +327,7 @@ export function BullManager({
               <label className={labelCls}>Dam</label>
               <input value={draft.dam ?? ""} onChange={(e) => patch({ dam: e.target.value })} className={inputCls} />
             </div>
-            <div>
-              <label className={labelCls}>Birth weight (lb)</label>
-              <input type="number" value={draft.birthWeightLbs ?? ""} onChange={(e) => patch({ birthWeightLbs: e.target.value ? Number(e.target.value) : undefined })} className={inputCls} />
-            </div>
-            <div>
-              <label className={labelCls}>Weaning weight (lb)</label>
-              <input type="number" value={draft.weaningWeightLbs ?? ""} onChange={(e) => patch({ weaningWeightLbs: e.target.value ? Number(e.target.value) : undefined })} className={inputCls} />
-            </div>
-            <div>
-              <label className={labelCls}>Current weight (lb)</label>
-              <input type="number" value={draft.currentWeightLbs ?? ""} onChange={(e) => patch({ currentWeightLbs: e.target.value ? Number(e.target.value) : undefined })} className={inputCls} />
-            </div>
             <div className="flex items-end gap-5">
-              <label className="flex items-center gap-2 text-sm text-ink/75">
-                <input type="checkbox" checked={Boolean(draft.polled)} onChange={(e) => patch({ polled: e.target.checked })} />
-                Polled
-              </label>
               <label className="flex items-center gap-2 text-sm text-ink/75">
                 <input type="checkbox" checked={Boolean(draft.featured)} onChange={(e) => patch({ featured: e.target.checked })} />
                 Feature on home
@@ -354,10 +338,6 @@ export function BullManager({
           <div className="mt-4">
             <label className={labelCls}>Tagline (one line)</label>
             <input value={draft.tagline} onChange={(e) => patch({ tagline: e.target.value })} className={inputCls} />
-          </div>
-          <div className="mt-4">
-            <label className={labelCls}>Description</label>
-            <textarea value={draft.description} onChange={(e) => patch({ description: e.target.value })} rows={4} className={inputCls} />
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div>

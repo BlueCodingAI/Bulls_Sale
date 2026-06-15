@@ -1,36 +1,53 @@
+import Image from "next/image";
 import { site } from "@/data/site";
 
 /**
- * The "Rocking C" brand mark — a serif C seated on a rocker curve inside a
- * roping-circle badge. Renders as a self-contained SVG so it stays crisp
- * anywhere and inherits `currentColor`.
+ * The "Rocking C" brand mark — the client's logo artwork (a serif C seated on a
+ * rocker curve inside a roping-circle badge), saved as a transparent PNG at
+ * `public/logo.png`.
+ *
+ * `tone="natural"` shows the artwork in its own rust-brown color — use it on
+ * light backgrounds. `tone="light"` paints the logo shape with `currentColor`
+ * via a CSS mask, so it reads as a light gold/cream reverse on dark
+ * backgrounds (the brown would otherwise disappear). Pass the color through
+ * `className` (e.g. `text-gold-soft`) for the light tone.
  */
-export function BrandMark({ className = "" }: { className?: string }) {
+export function BrandMark({
+  className = "",
+  tone = "natural",
+}: {
+  className?: string;
+  tone?: "natural" | "light";
+}) {
+  if (tone === "light") {
+    return (
+      <span
+        role="img"
+        aria-label={`${site.name} logo`}
+        className={className}
+        style={{
+          backgroundColor: "currentColor",
+          WebkitMaskImage: "url(/logo.png)",
+          maskImage: "url(/logo.png)",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+          WebkitMaskPosition: "center",
+          maskPosition: "center",
+          WebkitMaskSize: "contain",
+          maskSize: "contain",
+        }}
+      />
+    );
+  }
   return (
-    <svg
-      viewBox="0 0 100 100"
-      role="img"
-      aria-label={`${site.name} brand`}
-      className={className}
-      fill="none"
-    >
-      <circle cx="50" cy="50" r="47" stroke="currentColor" strokeWidth="2" opacity="0.55" />
-      <circle cx="50" cy="50" r="40.5" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-      {/* The C */}
-      <path
-        d="M67 36.5c-3.9-4.6-9.8-7.5-16.4-7.5C38.4 29 28.5 38.4 28.5 50S38.4 71 50.6 71c6.6 0 12.5-2.9 16.4-7.5"
-        stroke="currentColor"
-        strokeWidth="6.5"
-        strokeLinecap="round"
-      />
-      {/* The rocker */}
-      <path
-        d="M30 79c4.8 4.2 11.6 6.8 20 6.8S65.2 83.2 70 79"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
+    <Image
+      src="/logo.png"
+      alt={`${site.name} logo`}
+      width={40}
+      height={40}
+      priority
+      className={`object-contain ${className}`}
+    />
   );
 }
 
@@ -47,11 +64,17 @@ export function Logo({
   /** "dark" text on light bg, "light" text on dark bg. */
   variant?: "dark" | "light";
 }) {
-  const textColor = variant === "light" ? "text-cream" : "text-ink";
-  const subColor = variant === "light" ? "text-gold-soft" : "text-rust";
+  const onDark = variant === "light";
+  const textColor = onDark ? "text-cream" : "text-ink";
+  const subColor = onDark ? "text-gold-soft" : "text-rust";
+  const size = markClassName || "h-10 w-10";
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
-      <BrandMark className={`${markColor(variant)} ${markClassName || "h-10 w-10"}`} />
+      {onDark ? (
+        <BrandMark tone="light" className={`text-gold-soft ${size}`} />
+      ) : (
+        <BrandMark tone="natural" className={size} />
+      )}
       <span className="flex flex-col leading-none">
         <span
           className={`font-display text-[1.32rem] font-semibold tracking-tight ${textColor}`}
@@ -66,8 +89,4 @@ export function Logo({
       </span>
     </span>
   );
-}
-
-function markColor(variant: "dark" | "light") {
-  return variant === "light" ? "text-gold-soft" : "text-rust";
 }
