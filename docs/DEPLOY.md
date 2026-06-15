@@ -100,8 +100,8 @@ CONTENT_DIR=/var/data/rocking-c
 # Optional — deliver contact-form emails via Resend (resend.com).
 # Without these the form falls back to opening the visitor's email app.
 # RESEND_API_KEY=re_xxxxxxxx
-# CONTACT_TO=info@rockingccattle.com
-# CONTACT_FROM=Rocking C Cattle <info@rockingccattle.com>
+# CONTACT_TO=victoria@rockingccattle.com
+# CONTACT_FROM=Rocking C Cattle <victoria@rockingccattle.com>
 EOF
 
 nano .env     # set a real ADMIN_PASSWORD

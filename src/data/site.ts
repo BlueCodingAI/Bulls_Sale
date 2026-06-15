@@ -18,7 +18,7 @@ export const site = {
     "A family-owned East Texas ranch raising registered Lim-Flex and Limousin herd sires — bred for calving ease, carcass quality, and exceptional docility.",
 
   // ── Contact ───────────────────────────────────────────────────────────
-  email: "info@rockingccattle.com",
+  email: "victoria@rockingccattle.com",
   // Two contact numbers — Bruce and Victoria. Shown together in the footer
   // and on the contact page.
   phones: [

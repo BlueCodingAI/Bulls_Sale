@@ -11,7 +11,7 @@ import { recordInquiry } from "@/lib/analytics";
  *
  *   RESEND_API_KEY   your Resend API key
  *   CONTACT_TO       where inquiries should be delivered (your email)
- *   CONTACT_FROM     a verified sender, e.g. "Rocking C <info@rockingccattle.com>"
+ *   CONTACT_FROM     a verified sender, e.g. "Rocking C <victoria@rockingccattle.com>"
  *
  * If no key is configured, the API responds with { notConfigured: true } and
  * the form gracefully falls back to opening the visitor's email app instead —
