@@ -50,11 +50,10 @@ export default async function AboutPage() {
               eyebrow={`Est. ${site.established}`}
               divider
               title="A long family lineage in the cattle business."
-              subtitle="Lim-Flex & Limousin"
             />
             <div className="mt-6 space-y-5 text-pretty text-lg leading-relaxed text-ink/75">
               <p>
-                We started this journey in {site.established}, but cattle have been in
+                We started this Lim-Flex journey in {site.established}, but cattle have been in
                 our family for generations. The team is three generations working
                 side by side — sharing knowledge, swapping stories, and chasing the
                 same goal: the best Lim-Flex and Limousin bulls we can possibly raise
