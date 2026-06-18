@@ -88,7 +88,8 @@ export function BullManager({
         const src = await uploadImage(f);
         added.push({ src, alt: draft.name ? `${draft.name}` : "" });
       }
-      patch({ photos: [...draft.photos, ...added] });
+      // Newest uploads go to the front so the most recent photo shows first (left).
+      patch({ photos: [...added, ...draft.photos] });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Upload failed.");
     } finally {
